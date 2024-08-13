@@ -1,0 +1,17 @@
+{% extends "blog_page.html" %}
+{% block title %} Edit Post {% endblock %}
+
+{% block content %}
+<div class="quote_section">
+
+    <form method="post">
+        {% csrf_token %}
+        <p> here</p>
+        {{ quote_form.as_p }}
+        <p> here</p>
+        <button type="submit">Save changes</button>
+    </form>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,119 @@
+{% extends "blog_page.html" %}
+{% block title %} Mission Monitoring {% endblock %}
+
+{% block content %}
+<div class="post_head">
+    <form method="post" action="">
+        {% csrf_token %}
+       
+        <div class="form-group">
+            {{ context_form.day.label_tag }}
+            {{ context_form.day }}
+        </div>
+        <div class="form-group">
+            {{ context_form.worked_time.label_tag }}
+            {{ context_form.worked_time }}
+        </div>
+        <div class="form-group">
+            {{ context_form.mission_type.label_tag }}
+            {{ context_form.mission_type }}
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+{% if Acheivments %}
+    <div class="achievements-grid">
+        {% for achievement in Acheivments %}
+            <div class="achievement-item">
+                {{ achievement }}
+                <a href="edit_entry/{{ achievement.id }}"> edit </a>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No posts found.</p>
+{% endif %}
+
+
+<div style="display: flex; width: 100%; height: 400px;">
+    <div style="flex: 1;">
+        <canvas id="pieChart" style="width: 100%; height: 100%;"></canvas>
+    </div>
+    <div style="flex: 1;">
+        <canvas id="barChart" style="width: 100%; height: 100%;"></canvas>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const ctxPie = document.getElementById('pieChart').getContext('2d');
+    const labelsPie = JSON.parse("{{ Unique_misisons|escapejs }}");
+    const dataPie = JSON.parse("{{ Unique_misisons_count|escapejs }}");
+
+    new Chart(ctxPie, {
+        type: 'pie',
+        data: {
+            labels: labelsPie,
+            datasets: [{
+                label: 'Number of entries per mission type',
+                data: dataPie,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+
+
+<script>
+    const ctxBar = document.getElementById('barChart').getContext('2d');
+    const missionType = JSON.parse("{{ mission_type|escapejs }}");
+    const missionTypeWorkedTime = JSON.parse("{{ mission_type_worked_time|escapejs }}");
+
+    // Function to generate a random color
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+    // Generate background colors and border colors dynamically based on the length of the data
+    const backgroundColors = missionTypeWorkedTime.map(() => getRandomColor());
+    const borderColors = missionTypeWorkedTime.map(() => getRandomColor());
+
+    new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+            labels: missionType,
+            datasets: [{
+                label: 'Hours per Mission over the past 7 days',
+                data: missionTypeWorkedTime,
+                backgroundColor: backgroundColors,
+                borderColor: borderColors,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+{% endblock %}

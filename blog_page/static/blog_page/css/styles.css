@@ -1,0 +1,197 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+header {
+    background-color: #07bd6e;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    flex-direction: row; /* Align children horizontally */
+    width: 100vw; /* Use full viewport width */
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar {
+    width: 200px; /* Increase width for better content space */
+    background-color: #b8bba8;
+    padding-top: 20px;
+    box-sizing: border-box; /* Include padding in the width */
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px 15px;
+    font-size: 18px;
+}
+
+.sidebar ul li a:hover {
+    background-color: #575757;
+}
+
+
+
+.content {
+    flex: 1; /* Take up remaining space */
+    padding: 20px;
+}
+
+.content_flex {
+    box-sizing: border-box; /* Include padding in the width */
+    display: flex;
+    flex-direction: row; /* Align children horizontally */
+}
+
+.post {
+    background: #fff;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+.post_head {
+    background: #78dbb2;
+    margin: 20px auto; /* Center horizontally */
+    padding: 10px;
+    width: 800px; /* Fixed width */
+    border: 1px solid #86c421;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex: 5,
+}
+
+.post h2 {
+    margin-top: 0;
+}
+
+.post p {
+    line-height: 1.6;
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.achievement-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+/* mood_widget.css */
+.mood-selector {
+    display: flex;
+    gap: 10px;
+}
+
+.mood-image {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    opacity: 0.6;
+}
+
+.mood-image.checked {
+    opacity: 1;
+    border: 2px solid #000; /* Optional: highlight selected mood */
+}
+
+/* Add styling for the quote section */
+.quote_section {
+    margin: 20px; /* Space above the section */
+    padding: 20px;    /* Space inside the section */
+    border: 1px solid #ddd; /* Light border around the section */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background color */
+    flex: 3,
+}
+
+.quote_section h2 {
+    font-size: 24px; /* Larger font size for the section heading */
+    margin-bottom: 20px; /* Space below the heading */
+}
+
+.quote_section .form-group {
+    margin-bottom: 15px; /* Space between form groups */
+}
+
+.quote_section .form-group label {
+    display: block; /* Labels take up the full width */
+    margin-bottom: 5px; /* Space between label and input */
+    font-weight: bold; /* Bold labels */
+}
+input, textarea {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.quote_section .form-group input,
+.quote_section .form-group textarea {
+    width: 100%; /* Make inputs and textareas full width */
+    padding: 10px; /* Add padding inside inputs */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 4px; /* Rounded corners */
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.quote_section .form-group input:focus,
+.quote_section .form-group textarea:focus {
+    border-color: #007bff; /* Change border color on focus */
+    outline: none; /* Remove default focus outline */
+}
+
+.quote_section button {
+    display: inline-block; /* Align the button correctly */
+    padding: 10px 20px; /* Add padding inside the button */
+    font-size: 16px; /* Font size for the button text */
+    color: #fff; /* Text color */
+    background-color: #007bff; /* Button background color */
+    border: none; /* Remove default border */
+    border-radius: 4px; /* Rounded corners for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.quote_section button:hover {
+    background-color: #0056b3; /* Darker background color on hover */
+}
+
+.quote_section h3 {
+    font-size: 20px; /* Font size for the quotes heading */
+    margin-top: 30px; /* Space above the quotes heading */
+    margin-bottom: 20px; /* Space below the heading */
+}
+
+.quote_section p {
+    margin-bottom: 15px; /* Space below each quote */
+    padding: 10px; /* Padding inside the paragraph */
+    border: 1px solid #ddd; /* Border around each quote */
+    border-radius: 4px; /* Rounded corners for quotes */
+    background-color: #fff; /* White background for quotes */
+}
